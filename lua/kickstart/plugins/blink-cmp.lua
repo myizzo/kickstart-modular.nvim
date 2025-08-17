@@ -76,9 +76,15 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'blade-nav' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          ['blade-nav'] = {
+            module = 'blade-nav.blink',
+            opts = {
+              close_tag_on_complete = true, -- default: true,
+            },
+          },
         },
       },
 
