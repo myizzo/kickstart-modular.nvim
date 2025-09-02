@@ -9,7 +9,7 @@ local parsers = {
   'git_config',
   'git_rebase',
   'gitattributes',
-  'gitcommit',
+  --  'gitcommit',
   'gitignore',
   'go',
   'html',
