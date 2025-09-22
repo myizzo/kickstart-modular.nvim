@@ -33,6 +33,7 @@ local parsers = {
   'ssh_config',
   'toml',
   'typescript',
+  'tsx',
   'typescriptreact',
   'vim',
   'vimdoc',
