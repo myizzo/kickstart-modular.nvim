@@ -19,8 +19,8 @@ return {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'mason-org/mason.nvim', opts = {} },
-      'mason-org/mason-lspconfig.nvim',
+      { 'mason-org/mason.nvim', opts = {}, branch = 'v1.x' },
+      { 'mason-org/mason-lspconfig.nvim', branch = 'v1.x' },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
@@ -78,7 +78,8 @@ return {
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+          map('ga', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+          map('gp', vim.lsp.buf.format, '[F]ormat Code', { 'n', 'x' })
 
           -- Find references for the word under your cursor.
           map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -220,6 +221,9 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
+        html = {
+          filetypes = { 'blade', 'html' }, -- not sure if useful, probably not
+        },
 
         lua_ls = {
           -- cmd = { ... },
@@ -259,6 +263,7 @@ return {
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
+        automatic_enable = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -267,6 +272,29 @@ return {
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
+          end,
+          html = function()
+            require('lspconfig').html.setup {
+              --              filetypes = { 'html' },
+              filetypes = { 'html', 'blade' },
+              capabilities = capabilities,
+              init_options = {
+                configurationSection = { 'html', 'css', 'javascript' },
+                embeddedLanguages = {
+                  css = true,
+                  javascript = true,
+                },
+                provideFormatter = true,
+              },
+            }
+          end,
+          intelephense = function()
+            require('lspconfig').intelephense.setup {
+              --              filetypes = { 'html' },
+              filetypes = { 'php', 'blade' },
+              cmd = { 'intelephense', '--stdio' },
+              root_markers = { '.git', 'composer.json' },
+            }
           end,
         },
       }
