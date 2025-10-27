@@ -271,10 +271,11 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            --vim.lsp.config[server_name].setup(server)
+            vim.lsp.enable(server_name)
           end,
           html = function()
-            require('lspconfig').html.setup {
+            vim.lsp.config['html'] = {
               --              filetypes = { 'html' },
               filetypes = { 'html', 'blade' },
               capabilities = capabilities,
@@ -286,14 +287,6 @@ return {
                 },
                 provideFormatter = true,
               },
-            }
-          end,
-          intelephense = function()
-            require('lspconfig').intelephense.setup {
-              --              filetypes = { 'html' },
-              filetypes = { 'php', 'blade' },
-              cmd = { 'intelephense', '--stdio' },
-              root_markers = { '.git', 'composer.json' },
             }
           end,
         },
