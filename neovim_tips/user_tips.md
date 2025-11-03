@@ -13,3 +13,11 @@ Split buffer with <leader>sp
 ---
 Fullscreen buffer with <leader>ak
 ***
+# Title: Toggle term 
+# Category:  term
+# Tags: terminal
+---
+Open toggle term with <leader>0
+Leave it with <C-w>q
+Move to it with <C-j> or <C-h> if opened (normal mode)
+***
