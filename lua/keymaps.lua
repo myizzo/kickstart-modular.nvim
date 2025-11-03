@@ -63,4 +63,11 @@ vim.g.copilot_no_tab_map = true
 vim.keymap.set('n', '<leader>sp', '<CMD>vsplit<CR>', { desc = 'Split buffer' })
 vim.keymap.set('n', '<leader>ak', '<CMD>tab split<CR>', { desc = 'Open buffer in a new tab (fullscreen)' })
 
+-- in case I want C-w] to work in vertical someday:
+--vim.keymap.set('n', '<C-w>]', function()
+--  local tag = vim.fn.expand('<cword>')
+--  if tag == '' then return end
+--  vim.cmd('vertical stag ' .. vim.fn.fnameescape(tag))
+--end, { noremap = true, silent = true })
+
 -- vim: ts=2 sts=2 sw=2 et
