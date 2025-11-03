@@ -7,7 +7,7 @@ return {
   config = function()
     require('toggleterm').setup()
 
-    vim.api.nvim_set_keymap('n', '<leader>0', '<cmd>:ToggleTerm size=20 name=main<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', '<leader>0', '<cmd>:5ToggleTerm size=20 name=main<CR>', { noremap = true, silent = true })
 
     local Terminal = require('toggleterm.terminal').Terminal
     local lazygit = Terminal:new {
