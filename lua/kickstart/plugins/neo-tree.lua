@@ -21,6 +21,7 @@ return {
         },
         width = 30,
       },
+      hijack_netrw_behavior = 'disabled',
     },
   },
 }

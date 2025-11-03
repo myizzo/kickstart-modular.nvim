@@ -60,4 +60,7 @@ vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
 })
 vim.g.copilot_no_tab_map = true
 
+vim.keymap.set('n', '<leader>sp', '<CMD>vsplit<CR>', { desc = 'Split buffer' })
+vim.keymap.set('n', '<leader>ak', '<CMD>tab split<CR>', { desc = 'Open buffer in a new tab (fullscreen)' })
+
 -- vim: ts=2 sts=2 sw=2 et
