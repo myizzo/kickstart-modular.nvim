@@ -62,6 +62,13 @@ vim.g.copilot_no_tab_map = true
 
 vim.keymap.set('n', '<leader>sp', '<CMD>vsplit<CR>', { desc = 'Split buffer' })
 vim.keymap.set('n', '<leader>ak', '<CMD>tab split<CR>', { desc = 'Open buffer in a new tab (fullscreen)' })
+vim.keymap.set('n', '<leader>dv', function()
+  if next(require('diffview.lib').views) == nil then
+    vim.cmd 'DiffviewOpen'
+  else
+    vim.cmd 'DiffviewClose'
+  end
+end, { desc = 'Diffview toggle' })
 
 -- in case I want C-w] to work in vertical someday:
 --vim.keymap.set('n', '<C-w>]', function()

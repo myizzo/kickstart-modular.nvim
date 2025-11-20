@@ -31,7 +31,7 @@ return {
       lazygit:toggle()
     end
 
-    vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', '<leader>pg', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true })
 
     function _G.set_terminal_keymaps()
       local opts = { buffer = 0 }
